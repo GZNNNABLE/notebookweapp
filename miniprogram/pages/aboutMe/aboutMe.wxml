@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="infoDetail" >
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登陆 </button>
+
+    <view class="a1">
+    <image wx:if="{{userInfo.avatarUrl}}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class="nickName">{{userInfo.nickName}}</view>
+    </view>
+</view>
+  </view>
+  <view>
+
+
+  <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+
+   
+
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <navigator class="content" hover-class="none" url="../logs/logs" open-type="redirect">
+        <image src="/pages/images/us.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">关于我</text>
+      </navigator>
+    </view>
+    
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <navigator class="content" hover-class="none" url="../navigateTest/navigateTest" open-type="redirect">
+        <image src="/pages/images/connect.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">联系我</text>
+      </navigator>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <navigator class="content" hover-class="none" url="../navigateTest/navigateTest" open-type="redirect">
+        <image src="/pages/images/setting.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">设置</text>
+      </navigator>
+    </view>
+ 
+   
+
+
+
+  </view>
+    
+
+  </view>
+

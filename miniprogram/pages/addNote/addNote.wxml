@@ -1,0 +1,71 @@
+<!--miniprogram/pages/addNote/addNote.wxml-->
+<view class="a1">
+
+  <van-field
+    size="large"
+    type="textarea"
+    autosize
+    model:value="{{ title }}"
+    class="frontInput"
+    label="标题"
+    placeholder="请输入日记标题"
+    border="{{ false }}"
+  />
+
+<van-radio-group  class="weather" model:value="{{ radio }}" bind:change="onChange">
+  <van-radio use-icon-slot value="{{ radio }}" name="1">
+    <image  class="checkboxImg" slot="icon" src="{{ radio === '1' ? icon.sundayactive : icon.sundaynormal }}"  />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="2">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '2' ? icon.cloudactive : icon.cloudnormal }}" />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="3">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '3' ? icon.badactive : icon.badnormal }}" />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="4">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '4' ? icon.rainactive : icon.rainnormal }}" />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="5">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '5' ? icon.snowactive : icon.snownormal }}" />
+  </van-radio>
+</van-radio-group>
+<van-cell-group>
+  <van-field
+    model:value="{{ message }}"
+    size="large"
+    custom-style="min-height:150px;"
+    class="frontInput"
+    label="正文"
+    type="textarea"
+    placeholder="请输入正文"
+    autosize
+    border="{{ false }}"
+  />
+</van-cell-group>
+
+<view class="uploader">
+    <view class="uploader-text" bindtap="doUpload">
+      <text class="a3">上传图片  </text>
+      <image class="a4" src="../../pages/images/camera.png"></image>
+    </view>
+    <view class="a2">
+    <view class="uploader-container" wx:for="{{picList}}"  >
+      
+      <image class="uploader-image" src="{{item}}" mode="aspectFit" bindtap="previewImg"></image>
+
+    </view>
+  </view>
+    
+  </view>
+  
+
+<view class="buttonFather">
+  <van-button  
+  bind:click="onAdd" 
+  color="#8bcfff"
+   
+  custom-style="width:150px;height:50px;font-size:20px"
+  type="info">提交</van-button>
+</view>
+</view>
+

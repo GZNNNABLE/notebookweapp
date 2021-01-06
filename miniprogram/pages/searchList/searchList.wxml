@@ -1,0 +1,122 @@
+<!--miniprogram/pages/searchList/searchList.wxml-->
+<view>
+  <view class="allcontent">
+  <van-dropdown-menu>
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+</van-dropdown-menu>
+  <van-search
+  value="{{ value }}"
+  input-align="center"
+  placeholder="请输入搜索关键词"
+/>
+<view class="a1">
+
+</view>
+<view>
+<van-swipe-cell class="searchCell" right-width="{{ 65 }}" left-width="{{ 65}}" wx:for="{{noteList}}">
+  <view class="slot" slot="left" bindtap="editNote" data-id="{{item._id}}"><text>编辑</text></view>
+  <van-cell-group  class="a1" >
+    <van-cell label="{{item.date}}" data-id="{{item._id}}" size="large" class="vancell" title="{{item.title}}" value="{{item.message}}" bind:click="showPopup" />
+  </van-cell-group>
+  <view slot="right" data-id="{{item._id}}" bindtap="delNote" >删除</view>
+  
+
+</van-swipe-cell>
+<van-popup 
+  show="{{ show }}"
+  position="left"
+  custom-style="height: 100%;width:70%;"
+  bind:close="onClose"
+  overlay-style="background: rgba(0,0,0,0.1)"
+  >
+  <view class="detailTitle">
+    <text class="title" >{{details.title}} </text>
+  </view>
+  <view class="imgFather">
+    <image class="weatherImg" wx:if="{{details.radio==='1'}}" src="{{iconSrc.sunday}}"></image>
+    <image class="weatherImg" wx:if="{{details.radio==='2'}}" src="{{iconSrc.cloudy}}"></image>
+    <image class="weatherImg" wx:if="{{details.radio==='3'}}" src="{{iconSrc.bad}}"></image>
+    <image class="weatherImg" wx:if="{{details.radio==='4'}}" src="{{iconSrc.rainy}}"></image>
+    <image class="weatherImg" wx:if="{{details.radio==='5'}}" src="{{iconSrc.snow}}"></image>
+    <view>{{details.date}}</view>
+  </view>
+  
+  <van-divider hairline />
+  <view class="detailMessage">
+    <text class="message" >{{details.message}}</text>
+  </view>
+  <van-divider hairline />
+  <view class="uploader-container" wx:for="{{details.picList}}"  >
+      <image class="uploader-image" src="{{item}}" mode="aspectFit" bindtap="previewImg"></image>
+  </view>
+</van-popup>
+<van-popup
+  show="{{ editShow }}"
+  position="left"
+  custom-style="height: 100%;width:70%;"
+  bind:close="onEditClose"
+  overlay-style="background: rgba(0,0,0,0.1)">
+  <van-cell-group>
+  <van-field
+    model:value="{{editTitle}}"
+    size="large"
+    class="frontInput"
+    label="标题"
+    placeholder="请输入日记标题"
+    border="{{ false }}"
+  />
+  
+
+</van-cell-group>
+<van-radio-group  class="weather" model:value="{{ radio }}" bind:change="onChange">
+  <van-radio use-icon-slot value="{{ radio }}" name="1">
+    <image  class="checkboxImg" slot="icon" src="{{ radio === '1' ? icon.sundayactive : icon.sundaynormal }}"  />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="2">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '2' ? icon.cloudactive : icon.cloudnormal }}" />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="3">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '3' ? icon.badactive : icon.badnormal }}" />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="4">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '4' ? icon.rainactive : icon.rainnormal }}" />
+  </van-radio>
+  <van-radio use-icon-slot value="{{ radio }}" name="5">
+    <image class="checkboxImg" slot="icon" src="{{ radio === '5' ? icon.snowactive : icon.snownormal }}" />
+  </van-radio>
+</van-radio-group>
+
+<view class="messageFather">
+<view class="messageTitle">正文</view>
+<view><textarea class="textarea" model:value="{{editMessage}}" placeholder="请输入正文" ></textarea></view>
+</view>
+<van-cell-group>
+  <van-field
+    model:value="{{editMessage}}"
+    size="large"
+    class="frontInput"
+    label="正文"
+    input-class="input-class"
+    placeholder="请输入正文"
+    border="{{ false }}"
+  />
+  
+
+</van-cell-group>
+<van-divider hairline />
+
+  <!-- <textarea name="" id="" cols="20" rows="10"></textarea> -->
+ 
+
+
+<view class="buttonFather">
+  <van-button  
+  bind:click="commitEdit" 
+  color="#8bcfff"
+  custom-style="width:150px;height:50px;font-size:20px"
+  type="info">提交</van-button></view>
+  <van-divider hairline />
+</van-popup>
+</view></view>
+</view>
+

@@ -1,0 +1,18 @@
+/* miniprogram/pages/firstPage/firstPage.wxss */
+page{
+  background-color:#ffffff 
+}
+
+.addButton{
+  width: 100px !important;
+}
+.buttonGroup{
+  height: auto;
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  
+}

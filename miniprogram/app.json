@@ -1,0 +1,77 @@
+{
+  "pages": [
+    
+    "pages/searchList/searchList",
+    "pages/firstPage/firstPage",
+    
+    "pages/index/index",
+    "pages/home/home",
+    "pages/calendar/calendar",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/addNote/addNote",
+    "pages/im/room/room",
+    "pages/aboutMe/aboutMe"
+    
+  ],
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-divider": "@vant/weapp/divider/index"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/firstPage/firstPage",
+        "iconPath": "pages/images/home.png",
+        "selectedIconPath": "pages/images/shome.png"
+      },
+      {
+        "pagePath": "pages/searchList/searchList",
+        "iconPath": "pages/images/search.png",
+        "selectedIconPath": "pages/images/ssearch.png"
+      },
+      {
+        "pagePath": "pages/calendar/calendar",
+        "iconPath": "pages/images/calender.png",
+        "selectedIconPath": "pages/images/scalender.png"
+      },
+      {
+        "pagePath": "pages/aboutMe/aboutMe",
+        "iconPath": "pages/images/me.png",
+        "selectedIconPath": "pages/images/sme.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

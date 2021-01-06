@@ -1,0 +1,6 @@
+/* miniprogram/pages/calendar/calendar.wxss */
+.van-button--primary {
+  width: 60px !important;
+  height: 60px !important;
+  background-color: #ffc0cb ;
+}
