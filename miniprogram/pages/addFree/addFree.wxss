@@ -1,0 +1,42 @@
+/* miniprogram/pages/addFree/addFree.wxss */
+.uploader-image{
+  height: 100px;
+  min-width: 25%;
+}
+.uploader-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 33%;
+}
+.delete{
+  padding-left: 80px;
+  
+}
+.a2{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.checkbox{
+  width: 20px;
+  height: 20px;
+  padding-top: 10%;
+}
+.noticeCheckbox{
+  font-size: 16px;
+  padding-left: 4%;
+  padding-top: 5%;
+  padding-bottom: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.buttonFather{
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

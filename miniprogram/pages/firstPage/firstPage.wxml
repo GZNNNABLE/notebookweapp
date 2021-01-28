@@ -2,9 +2,9 @@
 
 <view class="buttonGroup">
 <view><van-button class="addButton" custom-style=";width:300px;height:60px;font-size:21px;" type="info" bind:click="onNoteAdd"><text>日记</text></van-button></view>
-<view><van-button class="addButton" type="info" custom-style=";width:300px;height:60px;font-size:21px;" type="primary" bind:click="">学习</van-button></view>
-<view><van-button class="addButton" custom-style="background-color:pink;color:white;width:300px;height:60px;font-size:21px;"  bind:click="">购物</van-button></view>
-<view><van-button class="addButton" custom-style="background-color:#ffe02f;color:white;width:300px;height:60px;font-size:21px;"bind:click="">无类型</van-button>
+<view><van-button class="addButton" type="info" custom-style=";width:300px;height:60px;font-size:21px;" type="primary" bind:click="onLearnAdd">学习</van-button></view>
+<view><van-button class="addButton" custom-style="background-color:pink;color:white;width:300px;height:60px;font-size:21px;border-style: none"  bind:click="onShoppingAdd">购物</van-button></view>
+<view><van-button class="addButton" custom-style="background-color:#ffe02f;color:white;width:300px;height:60px;font-size:21px;border-style: none"bind:click="onFreeAdd">无类型</van-button>
   
 </view>
 </view>

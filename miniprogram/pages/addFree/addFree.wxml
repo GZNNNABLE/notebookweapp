@@ -1,0 +1,59 @@
+<!--miniprogram/pages/addFree/addFree.wxml-->
+<van-field
+    size="large"
+    type="textarea"
+    autosize
+    model:value="{{ title }}"
+    class="frontInput"
+    label="标题"
+    placeholder="请输入"
+    border="{{ false }}"
+  />
+  <van-field
+    size="large"
+    type="textarea"
+    custom-style="min-height:150px;"
+    autosize
+    model:value="{{ message }}"
+    class="frontInput"
+    label="内容（必填）"
+    placeholder="请输入"
+    border="{{ false }}"
+  />
+<van-grid direction="horizontal" column-num="2" >
+  <van-grid-item icon="photograph" text="相机" bindtap="takeCamera" />
+  <van-grid-item icon="photo" text="从相册导入" bindtap="doUpload" />
+</van-grid>
+<view class="a2">
+    <view class="uploader-container" wx:for="{{picList}}"  >
+      <van-icon class="delete" size="20px"  data-id="{{index}}" bindtap="deleteImg" name="close" />
+      <image class="uploader-image" data-id="{{index}}" src="{{item}}" mode="aspectFit" bindtap="previewImg"></image>
+
+    </view>
+  </view>
+  <view class="noticeCheckbox">
+  <van-checkbox  use-icon-slot value="{{ checked }}" bind:change="onChange">是否定时提醒
+    <image class="checkbox" slot="icon" src="{{ checked ? activeIcon : inactiveIcon }}" /></van-checkbox>
+ </view>
+
+<van-cell size="large" title="选择提醒时间" wx:if="{{pickTime}}" is-link bind:click="showTimePicker" >{{timeFormatter}}</van-cell>
+<view class="buttonFather">
+  <van-button  
+  bind:click="onAdd" 
+  color="#8bcfff"
+  custom-style="width:150px;height:50px;font-size:20px"
+  type="info">提交</van-button>
+</view>
+<van-popup show="{{ showTimePicker }}" 
+           bind:close="timePickerClose"
+           position="bottom"
+           custom-style="height: 50%;">
+<van-datetime-picker
+           type="datetime"
+           title="选择提醒时间"
+           value="{{ currentDate }}"
+           min-date="{{ minDate }}"
+           formatter="{{formatter}}"
+           bind:confirm="dateConfirm"
+           />
+</van-popup>

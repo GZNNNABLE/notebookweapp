@@ -1,0 +1,22 @@
+/* miniprogram/pages/editDetailShop/editDetailShop.wxss */
+.checkbox{
+  width: 20px;
+  height: 20px;
+  padding-top: 10%;
+}
+.noticeCheckbox{
+  font-size: 16px;
+  padding-left: 4%;
+  padding-top: 5%;
+  padding-bottom: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.buttonFather{
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

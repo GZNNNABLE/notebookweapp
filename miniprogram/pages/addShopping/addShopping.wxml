@@ -1,0 +1,51 @@
+<!--miniprogram/pages/addShopping/addShopping.wxml-->
+<van-field
+    size="large"
+    type="textarea"
+    autosize
+    model:value="{{ title }}"
+    class="frontInput"
+    label="主题"
+    placeholder="请输入主题"
+    border="{{ true }}"
+  />
+  <van-field
+    size="large"
+    custom-style="min-height:200px"
+    type="textarea"
+    autosize
+    model:value="{{ message }}"
+    class="frontInput"
+    label="内容"
+    placeholder="请输入购买物品"
+    border="{{ true }}"
+  />
+  <view class="noticeCheckbox">
+    
+  <van-checkbox  use-icon-slot value="{{ checked }}" bind:change="onChange">是否定时提醒
+    <image class="checkbox" slot="icon" src="{{ checked ? activeIcon : inactiveIcon }}" /></van-checkbox>
+  </view>
+
+<van-cell size="large" title="选择提醒时间" wx:if="{{pickTime}}" is-link bind:click="showTimePicker" >{{timeFormatter}}</van-cell>
+<view class="buttonFather">
+  <van-button  
+  bind:click="onAdd" 
+  color="#8bcfff"
+  custom-style="width:150px;height:50px;font-size:20px"
+  type="info">提交</van-button>
+  
+</view>
+<van-popup show="{{ showTimePicker }}" 
+           bind:close="timePickerClose"
+           position="bottom"
+           custom-style="height: 50%;">
+<van-datetime-picker
+           type="datetime"
+           title="选择提醒时间"
+           value="{{ currentDate }}"
+           min-date="{{ minDate }}"
+           formatter="{{formatter}}"
+           bind:confirm="dateConfirm"
+           />
+</van-popup>
+

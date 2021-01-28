@@ -1,7 +1,61 @@
 <!--miniprogram/pages/calendar/calendar.wxml-->
-
-<van-button type="primary"  color="#5fbdf3" round value="{{ date }}" bind:click="onDisplay">
-  <van-icon name="search" size="40px" />
+<view>
+  <van-sticky>
+<view class="titleTab">
+<van-button custom-style="width:100%" class="button" type="info"    value="{{ date }}" bind:click="onDisplay">
+  {{date}}
 </van-button>
+<view class="titleText">我的日程表</view>
+</view></van-sticky>
+<view wx:if="{{list.length===0}}" class="custom-image">
+<van-empty
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+  description="这一天还没有日程安排哦~"
+/></view>
+<view wx:for="{{list}}">
+  <van-swipe-cell right-width="{{ 65 }}" >
+<van-cell  data-id="{{item._id}}" custom-style="height:80px" size="large" label="{{item.time}}" bind:click="onQueryDetail" >
+  <view slot="title">
+    <van-tag size="medium" wx:if="{{item.tag==='a'}}" mark type="primary">会议</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='b'}}" mark type="primary">学习</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='c'}}" mark type="primary">出差</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='d'}}" mark type="primary">购物</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='e'}}" mark type="primary">约会</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='f'}}" mark type="primary">其他</van-tag>
+  </view>
+  <view class="rightSlot" slot="right-icon">
+    
+    <view class="message">{{item.message}}</view>
+    <view class="buttonGroup">
+    <van-button data-id="{{item._id}}" catchtap="testid" type="info" plain hairline custom-style="width:58px;height:26px">编辑</van-button>
+    
+    </view>
+  </view>
+</van-cell>
+<view data-id="{{item._id}}" class="delSlot" slot="right" bindtap="testid" >删除</view>
+</van-swipe-cell></view>
 
-<van-calendar color="#5fbdf3" show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" />
+
+  <van-button bindtap="addSchedule" custom-style="border-radius: 50%;height:58px;width:60px" colo class="addButton" type="info" >
+    <van-icon custom-style="height:20px" class="addImage" size="30px" name="plus" />
+  </van-button>
+
+<van-calendar default-date="{{today}}" min-date="{{ minDate }}" color="#5fbdf3" show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" formatter="{{ formatter }}" /></view>
+<van-popup
+  show="{{ showPopup }}"
+  bind:close="onPopupClose"
+  position="bottom"
+  custom-style="height: 30%;"
+  overlay-style="background: rgba(0,0,0,0.3)">
+  <view class="popup">
+  <view class="popupMessage">{{scheduleDetail.message}}</view>
+  <view class="popupBottom">
+    <view class="popupTime">{{scheduleDetail.time}}</view>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='a'}}" mark type="primary">会议</van-tag> 
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='b'}}" mark type="success">学习</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='c'}}" mark type="danger">出差</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='d'}}" mark type="warning">购物</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='e'}}" color="#ff91a3" mark >约会</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='f'}}" mark type="primary">其他</van-tag>
+  </view></view>
+  </van-popup>

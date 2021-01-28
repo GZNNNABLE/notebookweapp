@@ -64,6 +64,21 @@ Page({
   onShareAppMessage: function () {
 
   },
+  onFreeAdd:function(){
+    wx.navigateTo({
+      url: '../addFree/addFree',
+    })
+  },
+  onShoppingAdd:function(){
+    wx.navigateTo({
+      url: '../addShopping/addShopping',
+    })
+  },
+  onLearnAdd:function(){
+    wx.navigateTo({
+      url: '../addLearn/addLearn',
+    })
+  },
   onNoteAdd:function(){
     wx.navigateTo({
     url: '../addNote/addNote',

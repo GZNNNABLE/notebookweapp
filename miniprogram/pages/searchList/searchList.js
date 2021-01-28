@@ -1,10 +1,14 @@
 // miniprogram/pages/searchList/searchList.js
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    type:0,
+    userId:"",
+    dialogShow:false,
     radio: true,
     page:0,
     pageSize:20,
@@ -12,13 +16,14 @@ Page({
     show: false,
     editDetails:{},
     editTitle:"",
-    
+    params:{},
     editMessage:"",
     details:{},
     noteList:[],
     picList:[],
     detailTitle:'',
     detailMessage:'',
+    learnNotice:false,
     option1: [
       { text: '日记', value: 0 },
       { text: '学习', value: 1 },
@@ -46,7 +51,40 @@ Page({
       bad:'../../pages/images/badday2.png',
       rainy:'../../pages/images/rain2.png'
     },
-    value1:0
+    value1:0,
+    currentTime:new Date().getTime(),
+  },
+  handleClick:function(event){
+    if(this.data.type===0){
+      this.showPopup(event)
+    }
+    else if(this.data.type===1){
+      wx.navigateTo({
+        url: '../editDetailLearn/editDetailLearn?id='+event.currentTarget.dataset.id
+      })
+      
+    }
+    else if(this.data.type===2){
+      wx.navigateTo({
+        url: '../editDetailShop/editDetailShop?id='+event.currentTarget.dataset.id
+      })
+    }
+    else if(this.data.type===3){
+      wx.navigateTo({
+        url: '../editDetailFree/editDetailFree?id='+event.currentTarget.dataset.id
+      })
+    }
+  },
+  changeType:function(value){
+    this.setData({
+      type:value.detail
+      
+    })
+    this.data.noteList.length=0
+    this.data.page=0
+    console.log(this.data.type)
+    this.onQuery()
+    
   },
   commitEdit(){
     const db = wx.cloud.database()
@@ -63,7 +101,8 @@ Page({
           editShow:false
         })
         
-        this.data.noteList.length=this.data.noteList.length-20
+        this.data.noteList.length=0
+        this.data.page=0
         this.data.editShow=false
         this.onQuery()
 
@@ -98,11 +137,13 @@ Page({
     }
   },
   onQuery: function() {
-    
+   
     const db = wx.cloud.database()
-    // 查询当前用户所有的 counters
-    db.collection('counters').skip(this.data.noteList.length).where({
-      _openid: this.data.openid
+    
+    db.collection('counters').skip(this.data.noteList.length).where({ 
+      _openid: this.data.openid,
+      type:this.data.type
+    
     }).get({
       success: res => {
         
@@ -155,6 +196,28 @@ Page({
       }
     })
   },
+  handleEdit:function(event){
+    if(this.data.type===0){
+      this.editNote(event)
+    }
+    else if(this.data.type===1){
+
+      wx.redirectTo({
+        url: '../editDetailLearn/editDetailLearn?id='+event.currentTarget.dataset.id+'&edit=1'
+      })
+      console.log(event.currentTarget.dataset.id)
+    }
+    else if(this.data.type===2){
+      wx.redirectTo({
+        url: '../editDetailShop/editDetailShop?id='+event.currentTarget.dataset.id+'&edit=1'
+      })
+    }
+    else if(this.data.type===3){
+      wx.navigateTo({
+        url: '../editDetailFree/editDetailFree?id='+event.currentTarget.dataset.id+'&edit=1'
+      })
+    }
+  },
   editNote(event){
     this.setData({ editShow: true });
     const db = wx.cloud.database()
@@ -180,17 +243,23 @@ Page({
     })
   },
   delNote: function(event) {
-    
+    this.setData({
+      dialogShow:true
+    })
+    this.data.userId=event.currentTarget.dataset.id
+    console.log(this.data.userId)
+  },
+    delNoteConfirm:function(){
       const db = wx.cloud.database()
-      db.collection('counters').doc(event.currentTarget.dataset.id).remove({
+      db.collection('counters').doc(this.data.userId).remove({
         success: res => {
           wx.showToast({
             title: '删除成功',
           })
-          this.data.noteList.length=this.data.noteList.length-20
+          this.data.noteList.length=0
+          this.data.page=0
           
           this.onQuery()
-
         },
         fail: err => {
           wx.showToast({
@@ -202,6 +271,13 @@ Page({
       })
     
   },
+  delNoteCancel:function(){
+    this.setData({
+      dialogShow:false
+    })
+  },
+  
+
 
 
   onClose() {
@@ -232,6 +308,8 @@ Page({
    */
   onShow: function () {
     this.onQuery()
+    console.log(this.data.currentTime)
+   
   },
 
   /**
@@ -259,6 +337,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    
     if(this.data.noteList.length>=(this.data.page+1)*20) {
       this.data.page++ 
       this.onQuery()}

@@ -1,6 +1,138 @@
 /* miniprogram/pages/calendar/calendar.wxss */
-.van-button--primary {
-  width: 60px !important;
-  height: 60px !important;
-  background-color: #ffc0cb ;
+
+
+.titleTab{
+  display: flex;
+  flex-direction: row;
+  
+}
+.button{
+  width: 40%;
+}
+.titleText{
+  background-color: white;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.addButton{
+  display: flex;
+  align-content: center;
+  position: fixed;
+  right: 40rpx;
+  bottom: 80rpx;
+}
+.addImage{
+  
+}
+.custom-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:550px;
+}
+.header{
+  position: relative;
+  left: 20px;
+}
+.content{
+  position: relative;
+  left: 20px;
+}
+.container{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.scheduleBox{
+  height: 70px;
+  border-top-style: outset;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(243, 243, 243);
+}
+.scheduleMessage{
+  width: 100%;
+  overflow: hidden;
+  font-size: 17px;
+}
+.boxLeft{
+  width: 150px;
+  left: 15px;
+  position: relative;
+}
+.scheduleTime{
+  display: flex;
+align-items: center;
+}
+.rightSlot{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50%;
+}
+.buttonGroup{
+  display: flex;
+  
+  justify-content: flex-end;
+}
+.message{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;  
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
+  
+  font-size: 17px;
+}
+.mainMessage{
+  width: 25%;
+}
+.van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  height: 80px;
+  font-size: 20px;
+  line-height: 65px;
+  color: #fff;
+  text-align: center;
+  background-color: rgb(255, 82, 82);
+}
+.delSlot{
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popup{
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.popupBottom{
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.popupMessage{
+  color: rgb(0, 0, 0);
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 85%;
+  font-size: 20px;
+  
+}
+.popupTime{
+  color: rgb(172, 172, 172);
+  font-size: 30px;
 }

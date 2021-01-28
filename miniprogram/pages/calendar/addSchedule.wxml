@@ -1,0 +1,41 @@
+<!--miniprogram/pages/calendar/addSchedule.wxml-->
+<van-field
+    size="large"
+    custom-style="min-height:200px"
+    type="textarea"
+    autosize
+    model:value="{{ message }}"
+    class="frontInput"
+    label="内容"
+    placeholder="今天干点什么呢"
+    border="{{ true }}"
+  />
+  <van-checkbox-group class="checkBox" value="{{ checkResult }}" bind:change="onChange" max="{{1}}">
+  <van-checkbox icon-size="25px" name="a">会议</van-checkbox>
+  <van-checkbox icon-size="25px" name="b">学习</van-checkbox>
+  <van-checkbox icon-size="25px" name="c">出差</van-checkbox>
+  <van-checkbox icon-size="25px" name="d">购物</van-checkbox>
+  <van-checkbox icon-size="25px" name="e">约会</van-checkbox>
+  <van-checkbox icon-size="25px" name="f">其他</van-checkbox>
+</van-checkbox-group>
+<van-cell size="large" title="选择时间"  is-link bind:click="showPopup" >{{currentDate}}</van-cell>
+<van-popup show="{{ showPopup }}" 
+           bind:close="timePickerClose"
+           position="bottom"
+           custom-style="height: 50%;">
+<van-datetime-picker
+           type="time"
+           title="选择提醒时间"
+           value="00:00"
+           bind:confirm="timeConfirm"
+           bind:cancel="timePickerClose"
+           />
+</van-popup>
+<view class="buttonFather">
+  <van-button  
+  bind:click="onAdd" 
+  color="#8bcfff"
+  custom-style="width:150px;height:50px;font-size:20px"
+  type="info">提交</van-button>
+  
+</view>

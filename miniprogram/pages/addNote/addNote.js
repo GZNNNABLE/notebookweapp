@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    
     fileList: [
-
     ],
     imgUrl:'',
     title: '',
@@ -32,11 +32,12 @@ Page({
 
   }},
   
-  previewImg:function(){
+  previewImg:function(event){
+    console.log(event)
 
     wx.previewImage({
     urls: this.data.picList,
-    current: '1',
+    current: this.data.picList[event.currentTarget.dataset.id],
     success: (res) => {
       console.log(res)
     },
@@ -58,6 +59,7 @@ Page({
     })
   },
   uploadImage(fileURL) {
+    if(this.data.picList.length<3){
     wx.cloud.uploadFile({
       cloudPath:new Date().getTime()+'.png', // 上传至云端的路径
       filePath: fileURL, // 小程序临时文件路径
@@ -75,7 +77,29 @@ Page({
         console.log(this.data.picList)
       },
       fail: console.error
+    }
+  )}
+   else {wx.showToast({
+     title: '最多上传三张图片',
+     icon:'none',
+   })}
+  },
+  deleteImg:function(event){
+    console.log(event.currentTarget.dataset.id)
+    var len=this.data.picList.length
+    var piclist1=[]
+    for(var i=0;i<len;i++){
+      if (this.data.picList[i]!=this.data.picList[event.currentTarget.dataset.id]){
+        piclist1.push(this.data.picList[i])
+      }
+    }
+    this.setData({
+      picList:piclist1
+      
+      
     })
+console.log(this.data.picList)
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -140,11 +164,12 @@ Page({
     const db = wx.cloud.database()
     db.collection('counters').add({
       data: {
+        type:0,
         title:this.data.title,
         radio:this.data.radio,
         message:this.data.message,
         picList:this.data.picList,
-        date:year+"年"+month+"月"+new Date().getDate()+"日"
+        label:year+"年"+month+"月"+new Date().getDate()+"日"
       }})
       .then(
         res => {
@@ -155,7 +180,7 @@ Page({
           title:this.data.title,
           radio:this.data.radio,
           message:this.data.message,
-          date:res.date
+          label:res.date
         })
         
      wx.showToast({
