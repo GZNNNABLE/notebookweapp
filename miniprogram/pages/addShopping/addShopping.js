@@ -44,7 +44,8 @@ Page({
         notice:this.data.checked,
         message:this.data.message,
         noticeTime:this.data.noticeTime,
-        label:"购物"
+        label:"购物",
+        statisticsName:'购物'
       }})
       .then(
         res => {
@@ -58,16 +59,20 @@ Page({
           noticeTime:this.data.noticeTime
         })
         
-     wx.showToast({
+      wx.showToast({
        title: '新增记录成功',
+       duration:2000
      })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+
       }).catch(err => {
         wx.showToast({
           icon: 'none',
           value: '新增记录失败'
         })
         console.error('[数据库] [新增记录] 失败：', err)
+      })   
+        wx.navigateBack({
+        delta: 0,
       })
 
     

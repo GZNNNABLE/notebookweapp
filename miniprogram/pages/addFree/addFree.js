@@ -63,7 +63,8 @@ Page({
         message:this.data.message,
         noticeTime:this.data.noticeTime,
         picList:this.data.picList,
-        label:"noneType"
+        label:"noneType",
+        statisticsName:'无类型'
       }})
       .then(
         res => {
@@ -81,13 +82,16 @@ Page({
      wx.showToast({
        title: '新增记录成功',
      })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+
       }).catch(err => {
         wx.showToast({
           icon: 'none',
           value: '新增记录失败'
         })
         console.error('[数据库] [新增记录] 失败：', err)
+      })
+      wx.navigateBack({
+        delta: 0,
       })
   },
   timePickerClose:function(){

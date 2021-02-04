@@ -4,6 +4,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+      dialogShow:'',
+      
+      delId:'',
       scheduleDetail:'',
       showPopup:'',
       list:[],
@@ -39,7 +42,7 @@ Page({
           this.setData({
             scheduleDetail:res.data[0]
           })
-          console.log(this.data.scheduleDetail)
+          console.log(this.data.scheduleDetail.tag)
   
         },
         fail: err => {
@@ -51,22 +54,17 @@ Page({
         }
       })
     },
-    onQuery: function() {
-   
+    onQuery: function() {  
       const db = wx.cloud.database()
-      
       db.collection('schedule').skip(this.data.list.length).where({ 
         _openid: this.data.openid,
-        date:this.data.date
-      
+        date:this.data.date     
       }).get({
         success: res => {
           console.log(res)
           this.setData({
             list:[...this.data.list,...res.data]
           })
-          
-  
         },
         fail: err => {
           wx.showToast({
@@ -102,13 +100,52 @@ Page({
       this.onQuery()
      
     },
+    gotoEdit(event){
+      wx.redirectTo({
+        url: '../calendar/editSchedule?id='+event.currentTarget.dataset.id,
+      })
+    },
+    delSchedule: function(event) {
+      this.setData({
+        dialogShow:true,
+        delId:event.currentTarget.dataset.id
+      })
+      
+    },
+      delScheduleConfirm:function(){
+        const db = wx.cloud.database()
+        db.collection('schedule').doc(this.data.delId).remove({
+          success: res => {
+            wx.showToast({
+              title: '删除成功',
+            })
+            this.data.list.length=0
+            this.data.page=0
+            
+            this.onQuery()
+          },
+          fail: err => {
+            wx.showToast({
+              icon: 'none',
+              title: '删除失败',
+            })
+            console.error('[数据库] [删除记录] 失败：', err)
+          }
+        })
+      
+    },
+    delScheduleCancel:function(){
+      this.setData({
+        dialogShow:false
+      })
+    },
   
   
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      
+     this.onQuery()
     },
   
     /**
@@ -122,7 +159,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-      this.onQuery()
+      
     },
   
     /**
@@ -143,6 +180,8 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
+      this.onQuery()
+      wx.stopPullDownRefresh()
   
     },
   

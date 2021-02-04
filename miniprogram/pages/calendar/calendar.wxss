@@ -20,7 +20,7 @@
   display: flex;
   align-content: center;
   position: fixed;
-  right: 40rpx;
+  right: 80rpx;
   bottom: 80rpx;
 }
 .addImage{
@@ -130,7 +130,7 @@ align-items: center;
   justify-content: center;
   width: 85%;
   font-size: 20px;
-  
+
 }
 .popupTime{
   color: rgb(172, 172, 172);

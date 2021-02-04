@@ -13,6 +13,7 @@ Page({
     currentDate:""
   },
   onAdd: async function(){
+    if(this.data.checkResult.length!==0){
 
     const db = wx.cloud.database()
     db.collection('schedule').add({
@@ -23,22 +24,27 @@ Page({
         time:this.data.currentDate
       }})
       .then(
-        res => {
-          
+        res => {          
         // 在返回结果中会包含新创建的记录的 _id
-
-        
      wx.showToast({
-       title: '新增记录成功',
+       title: '新增成功',
      })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+      wx.navigateBack({
+        delta: 0,
+      })
       }).catch(err => {
         wx.showToast({
           icon: 'none',
           value: '新增记录失败'
         })
         console.error('[数据库] [新增记录] 失败：', err)
-      })
+      })}
+
+      else{        
+        wx.showToast({
+        icon:'none',
+        title: '请选择日程类型'
+      })}
  
 
     

@@ -1,5 +1,12 @@
 <!--miniprogram/pages/calendar/calendar.wxml-->
 <view>
+  <van-dialog 
+  id="van-dialog" 
+  show-cancel-button="true"
+  show="{{dialogShow}}"
+  bind:confirm="delScheduleConfirm"
+  bind:close="delScheduleCancel"
+  message="确认删除吗" />
   <van-sticky>
 <view class="titleTab">
 <van-button custom-style="width:100%" class="button" type="info"    value="{{ date }}" bind:click="onDisplay">
@@ -16,23 +23,24 @@
   <van-swipe-cell right-width="{{ 65 }}" >
 <van-cell  data-id="{{item._id}}" custom-style="height:80px" size="large" label="{{item.time}}" bind:click="onQueryDetail" >
   <view slot="title">
-    <van-tag size="medium" wx:if="{{item.tag==='a'}}" mark type="primary">会议</van-tag>
-    <van-tag size="medium" wx:if="{{item.tag==='b'}}" mark type="primary">学习</van-tag>
-    <van-tag size="medium" wx:if="{{item.tag==='c'}}" mark type="primary">出差</van-tag>
-    <van-tag size="medium" wx:if="{{item.tag==='d'}}" mark type="primary">购物</van-tag>
-    <van-tag size="medium" wx:if="{{item.tag==='e'}}" mark type="primary">约会</van-tag>
-    <van-tag size="medium" wx:if="{{item.tag==='f'}}" mark type="primary">其他</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag===undefined}}" mark type="primary">暂未分类</van-tag> 
+    <van-tag size="medium" wx:if="{{item.tag==='会议'}}" mark type="primary">会议</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='学习'}}" mark type="primary">学习</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='出差'}}" mark type="primary">出差</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='购物'}}" mark type="primary">购物</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='约会'}}" mark type="primary">约会</van-tag>
+    <van-tag size="medium" wx:if="{{item.tag==='其他'}}" mark type="primary">其他</van-tag>
   </view>
   <view class="rightSlot" slot="right-icon">
     
     <view class="message">{{item.message}}</view>
     <view class="buttonGroup">
-    <van-button data-id="{{item._id}}" catchtap="testid" type="info" plain hairline custom-style="width:58px;height:26px">编辑</van-button>
+    <van-button data-id="{{item._id}}" catchtap="gotoEdit" type="info" plain hairline custom-style="width:58px;height:26px">编辑</van-button>
     
     </view>
   </view>
 </van-cell>
-<view data-id="{{item._id}}" class="delSlot" slot="right" bindtap="testid" >删除</view>
+<view data-id="{{item._id}}" class="delSlot" slot="right" bindtap="delSchedule" >删除</view>
 </van-swipe-cell></view>
 
 
@@ -51,11 +59,13 @@
   <view class="popupMessage">{{scheduleDetail.message}}</view>
   <view class="popupBottom">
     <view class="popupTime">{{scheduleDetail.time}}</view>
-    <van-tag size="large" wx:if="{{scheduleDetail.tag==='a'}}" mark type="primary">会议</van-tag> 
-    <van-tag size="large" wx:if="{{scheduleDetail.tag==='b'}}" mark type="success">学习</van-tag>
-    <van-tag size="large" wx:if="{{scheduleDetail.tag==='c'}}" mark type="danger">出差</van-tag>
-    <van-tag size="large" wx:if="{{scheduleDetail.tag==='d'}}" mark type="warning">购物</van-tag>
-    <van-tag size="large" wx:if="{{scheduleDetail.tag==='e'}}" color="#ff91a3" mark >约会</van-tag>
-    <van-tag size="large" wx:if="{{scheduleDetail.tag==='f'}}" mark type="primary">其他</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag===undefined}}" mark color="#a5a5a5">暂未分类</van-tag> 
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='会议'}}" mark type="primary">会议</van-tag> 
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='学习'}}" mark type="success">学习</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='出差'}}" mark type="danger">出差</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='购物'}}" mark type="warning">购物</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='约会'}}" color="#ff91a3" mark >约会</van-tag>
+    <van-tag size="large" wx:if="{{scheduleDetail.tag==='其他'}}" mark color="#ffdc16" >其他</van-tag>
   </view></view>
   </van-popup>
+

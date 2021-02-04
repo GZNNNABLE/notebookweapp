@@ -1,3 +1,4 @@
+<!--miniprogram/pages/calendar/editSchedule.wxml-->
 <!--miniprogram/pages/calendar/addSchedule.wxml-->
 <van-field
     size="large"
@@ -11,12 +12,12 @@
     border="{{ true }}"
   />
   <van-checkbox-group class="checkBox" value="{{ checkResult }}" bind:change="onChange" max="{{1}}">
-  <van-checkbox icon-size="25px" name="会议">会议</van-checkbox>
-  <van-checkbox icon-size="25px" name="学习">学习</van-checkbox>
-  <van-checkbox icon-size="25px" name="出差">出差</van-checkbox>
-  <van-checkbox icon-size="25px" name="购物">购物</van-checkbox>
-  <van-checkbox icon-size="25px" name="约会">约会</van-checkbox>
-  <van-checkbox icon-size="25px" name="其他">其他</van-checkbox>
+  <van-checkbox icon-size="25px" name="a">会议</van-checkbox>
+  <van-checkbox icon-size="25px" name="b">学习</van-checkbox>
+  <van-checkbox icon-size="25px" name="c">出差</van-checkbox>
+  <van-checkbox icon-size="25px" name="d">购物</van-checkbox>
+  <van-checkbox icon-size="25px" name="e">约会</van-checkbox>
+  <van-checkbox icon-size="25px" name="f">其他</van-checkbox>
 </van-checkbox-group>
 <van-cell size="large" title="选择时间"  is-link bind:click="showPopup" >{{currentDate}}</van-cell>
 <van-popup show="{{ showPopup }}" 
@@ -33,7 +34,7 @@
 </van-popup>
 <view class="buttonFather">
   <van-button  
-  bind:click="onAdd" 
+  bind:click="commitEdit" 
   color="#8bcfff"
   custom-style="width:150px;height:50px;font-size:20px"
   type="info">提交</van-button>

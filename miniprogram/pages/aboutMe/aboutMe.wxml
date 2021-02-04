@@ -8,40 +8,30 @@
       <view class="nickName">{{userInfo.nickName}}</view>
     </view>
 </view>
-  </view>
-  <view>
+</view>
+<van-tabs active="{{ active }}" bind:change="onChange" class="tabBar" color="#13bcff"  type="card">
+  <van-tab class="tab1" title="备忘录统计">
+
+    <view class="chartContainer">
+  <ec-canvas
+   id="mychart-dom-bar" 
+   canvas-id="mychart-bar" 
+   ec="{{ ec }}">
+  </ec-canvas>
+</view>
+
+  </van-tab>
+  <van-tab title="日程表分布">
+    <view wx:if="{{active===1}}" class="chartContainer1">
+  <ec-canvas
+   id="mychart-dom-bar" 
+   canvas-id="mychart-bar" 
+   ec="{{ ecs }}">
+  </ec-canvas>
+</view>
+  </van-tab>
 
 
-  <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+</van-tabs>
 
-   
-
-    <view class="cu-item {{menuArrow?'arrow':''}}">
-      <navigator class="content" hover-class="none" url="../logs/logs" open-type="redirect">
-        <image src="/pages/images/us.png" class="png" mode="aspectFit"></image>
-        <text class="text-grey">关于我</text>
-      </navigator>
-    </view>
-    
-    <view class="cu-item {{menuArrow?'arrow':''}}">
-      <navigator class="content" hover-class="none" url="../navigateTest/navigateTest" open-type="redirect">
-        <image src="/pages/images/connect.png" class="png" mode="aspectFit"></image>
-        <text class="text-grey">联系我</text>
-      </navigator>
-    </view>
-    <view class="cu-item {{menuArrow?'arrow':''}}">
-      <navigator class="content" hover-class="none" url="../navigateTest/navigateTest" open-type="redirect">
-        <image src="/pages/images/setting.png" class="png" mode="aspectFit"></image>
-        <text class="text-grey">设置</text>
-      </navigator>
-    </view>
- 
-   
-
-
-
-  </view>
-    
-
-  </view>
 

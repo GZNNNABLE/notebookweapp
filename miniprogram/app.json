@@ -7,7 +7,7 @@
     "pages/home/home",
     "pages/calendar/calendar",
     "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
+
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
@@ -15,16 +15,16 @@
     "pages/openapi/serverapi/serverapi",
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
     "pages/addNote/addNote",
-    "pages/im/room/room",
     "pages/aboutMe/aboutMe",
     "pages/editDetailLearn/editDetailLearn",
     "pages/addShopping/addShopping",
     "pages/editDetailShop/editDetailShop",
     "pages/addFree/addFree",
     "pages/editDetailFree/editDetailFree",
-    "pages/calendar/addSchedule"
+    "pages/calendar/addSchedule",
+    "pages/calendar/editSchedule",
+    "pages/testRadar/teatRadar"
   ],
   "usingComponents": {
     "van-grid": "@vant/weapp/grid/index",

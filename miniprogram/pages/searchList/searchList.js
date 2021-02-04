@@ -94,13 +94,11 @@ Page({
         title: this.data.editTitle,
         message:this.data.editMessage,
         radio:this.data.radio
-
       },
       success: res => {
         this.setData({
           editShow:false
-        })
-        
+        })      
         this.data.noteList.length=0
         this.data.page=0
         this.data.editShow=false
@@ -213,7 +211,7 @@ Page({
       })
     }
     else if(this.data.type===3){
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../editDetailFree/editDetailFree?id='+event.currentTarget.dataset.id+'&edit=1'
       })
     }
@@ -276,10 +274,6 @@ Page({
       dialogShow:false
     })
   },
-  
-
-
-
   onClose() {
     this.setData({ show: false });
   },
@@ -291,7 +285,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.onQuery()
     
     
   },
@@ -307,8 +301,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onQuery()
-    console.log(this.data.currentTime)
+   
+
    
   },
 
@@ -330,7 +324,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onQuery()
+    wx.stopPullDownRefresh()
   },
 
   /**

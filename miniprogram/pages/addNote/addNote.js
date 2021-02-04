@@ -169,7 +169,8 @@ console.log(this.data.picList)
         radio:this.data.radio,
         message:this.data.message,
         picList:this.data.picList,
-        label:year+"年"+month+"月"+new Date().getDate()+"日"
+        label:year+"年"+month+"月"+new Date().getDate()+"日",
+        statisticsName:'日记'
       }})
       .then(
         res => {
@@ -186,7 +187,7 @@ console.log(this.data.picList)
      wx.showToast({
        title: '新增记录成功',
      })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+
       }).catch(err => {
         wx.showToast({
           icon: 'none',
@@ -194,7 +195,9 @@ console.log(this.data.picList)
         })
         console.error('[数据库] [新增记录] 失败：', err)
       })
-
+      wx.navigateBack({
+        delta: 0,
+      })
     
   },
   onChange(event) {

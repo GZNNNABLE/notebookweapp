@@ -1,6 +1,6 @@
 /* miniprogram/pages/firstPage/firstPage.wxss */
 page{
-  background-color:#ffffff 
+ 
 }
 
 .addButton{
@@ -13,6 +13,6 @@ page{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #ffffff;
+  background-image: url(http://tiebapic.baidu.com/forum/w%3D580/sign=b2f31c3b460fd9f9a0175561152dd42b/da338035e5dde711c9e470b1b0efce1b9d166117.jpg);
   
 }

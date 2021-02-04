@@ -13,4 +13,8 @@
       
    
   }
+  ,
+  "navigationBarTitleText":"全部备忘录",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark" 
 }

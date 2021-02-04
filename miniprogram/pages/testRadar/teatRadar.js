@@ -1,4 +1,4 @@
-// pages/addFunction/addFunction.js
+// pages/testRadar/teatRadar.js
 Page({
 
   /**
