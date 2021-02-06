@@ -51,6 +51,10 @@ function initChart(canvas, width, height,dpr) {
           }
         },
         data: [          
+          { value: 0, },
+          { value: 0}
+          ,{ value: 0}
+          ,{ value: 0}
 
         ]
       }
@@ -98,6 +102,12 @@ function initCharts(canvas, width, height,dpr) {
       areaStyle: {},
       // areaStyle: {normal: {}},
       data: [
+        { value: 0},
+        { value: 0}
+        ,{ value: 0}
+        ,{ value: 0}
+        ,{ value: 0}
+        ,{ value: 0}
       ]
   }]
     
@@ -159,6 +169,8 @@ Page({
     ecs: {
       onInit: initCharts
     },
+    sche:[],
+    note:[],
     loadingShow:false,
     active: 0,
     array: [1, 2, 3, 4, 5],
@@ -168,7 +180,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     noteStas:[],
-    scheStas:[{_id:'',num:''}],
+    scheStas:[],
     radarMax:0,
   },
   onStatisticsNote: function() {  
@@ -183,19 +195,19 @@ Page({
     .then(res => {
       
       this.setData({
-      noteStas:res.result.list
+      noteStas:res.result.list,
     })
+    this.data.noteStas.forEach(function(item){
+      item.name = item._id; 
+      delete item._id;
+  })
+  console.log(this.data.noteStas)
       
       
       chart.setOption({
         series: [{
-          data: 
-          [
-            { value: this.data.noteStas[3].value, name:this.data.noteStas[3]._id},
-            { value: this.data.noteStas[2].value, name:this.data.noteStas[2]._id},
-            { value: this.data.noteStas[1].value, name:this.data.noteStas[1]._id},
-            { value: this.data.noteStas[0].value, name:this.data.noteStas[0]._id}
-          ]
+          data: this.data.noteStas
+
         }
         ]
       });
@@ -215,9 +227,14 @@ Page({
     })
     .then(res => {
       this.setData({
-      scheStas:res.result.list
+      scheStas:res.result.list,
+     
+    })      
+    this.setData({
+      
+      sche:JSON.parse(JSON.stringify(this.data.scheStas))
     })
-    console.log(this.data.scheStas[0].num)
+
     for( var i=0;i<this.data.scheStas.length;i++){
       if(this.data.scheStas[i].num>this.data.radarMax){
         this.setData({
@@ -225,30 +242,34 @@ Page({
         })
       }
     }
-    console.log(this.data.radarMax)
-     
+    console.log(this.data.scheStas)   
+     this.data.scheStas.forEach(function(it){
+      it.name = it._id; 
+      it.max = it.num;
+      delete it._id;
+      delete it.num;
+  })
+  for( var i=0;i<this.data.scheStas.length;i++){
+    this.data.scheStas[i].max=this.data.radarMax
+  }
+  var sche1=[]
+  for( var i=0;i<this.data.sche.length;i++){
+    console.log(this.data.sche[i])
+    sche1.push(this.data.sche[i].num)
+  }
+  this.setData({
+    sche:sche1
+  })
+
+console.log(this.data.sche)
       charts.setOption({
         radar:{
-          indicator: [
-        
-            { name: this.data.scheStas[0]._id,max:this.data.radarMax},
-            { name: this.data.scheStas[1]._id ,max:this.data.radarMax},
-            { name: this.data.scheStas[2]._id,max:this.data.radarMax},
-            { name: this.data.scheStas[3]._id ,max:this.data.radarMax},
-            { name: this.data.scheStas[4]._id ,max:this.data.radarMax},
-            { name: this.data.scheStas[5]._id, max:this.data.radarMax}
-        ]
+          indicator: this.data.scheStas
         },
         series: [{
-          data: [{
-            value:[this.data.scheStas[0].num, 
-             this.data.scheStas[1].num, 
-             this.data.scheStas[2].num, 
-              this.data.scheStas[3].num, 
-             this.data.scheStas[4].num, 
-             this.data.scheStas[5].num, ],
-             name:'日程分布情况'
-        }]}
+          data: [{value:this.data.sche,
+          name:'日程分布情况'}]
+        }
         ]
       });
       wx.hideLoading({})
@@ -274,6 +295,7 @@ Page({
   // },
    //获取当前位置
    onShow:function(){
+
 
    },
    onReady:function(){

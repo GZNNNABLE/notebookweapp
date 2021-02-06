@@ -86,7 +86,7 @@ text-overflow: ellipsis;
 }
 .weatherImg{
   padding-left: 8%;
-  width:70px;
+  width:55px;
   height: 45px;
 }
 .imgFather{

@@ -10,9 +10,11 @@
   options="{{ option1 }}" />
 </van-dropdown-menu>
   <van-search
-  value="{{ value }}"
+  model:value="{{ searchValue }}"
+  bind:search="onSearch"
+  bind:clear="clearSearch"
   input-align="center"
-  placeholder="请输入搜索关键词"
+  placeholder="共{{noteList.length}}条数据，请输入内容关键词搜索"
 />
 </van-sticky>
 <view class="a1">
@@ -50,7 +52,7 @@
     <image class="weatherImg" wx:if="{{details.radio==='3'}}" src="{{iconSrc.bad}}"></image>
     <image class="weatherImg" wx:if="{{details.radio==='4'}}" src="{{iconSrc.rainy}}"></image>
     <image class="weatherImg" wx:if="{{details.radio==='5'}}" src="{{iconSrc.snow}}"></image>
-    <view>{{details.date}}</view>
+    <view>{{details.label}}</view>
   </view>
   
   <van-divider hairline />

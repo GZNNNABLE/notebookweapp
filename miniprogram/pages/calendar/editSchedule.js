@@ -8,7 +8,7 @@ Page({
     showPopup:false,
     currentDate:[],
     message:'',
-    checkResult:'a'
+    checkResult:[],
 
 
   },
@@ -39,9 +39,10 @@ onQuery(){
       console.log(res.data[0].tag)
       this.setData({
         message:res.data[0].message,
-        checkResult: [...res.data[0].tag],
+        checkResult: [res.data[0].tag],
         currentDate:res.data[0].time
       })
+      console.log(typeof(res.data[0].tag))
       
 
     },
@@ -68,9 +69,9 @@ commitEdit(){
           title: '编辑成功',
           duration:2000
         })
-        wx.switchTab({
-          url: '../calendar/calendar',
-})
+        wx.navigateBack({
+          delta: 0,
+        })
       },
       fail: err => {
         icon: 'none',

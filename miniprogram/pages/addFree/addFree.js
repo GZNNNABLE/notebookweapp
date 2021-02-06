@@ -125,6 +125,15 @@ Page({
     console.log(event.currentTarget.dataset.id)
     var len=this.data.picList.length
     var piclist1=[]
+    wx.cloud.deleteFile({
+      fileList: [this.data.picList[event.currentTarget.dataset.id]],
+      
+      success: res => {
+        // handle success
+        console.log(res.fileList)
+      },
+      fail: console.error
+    })
     for(var i=0;i<len;i++){
       if (this.data.picList[i]!=this.data.picList[event.currentTarget.dataset.id]){
         piclist1.push(this.data.picList[i])

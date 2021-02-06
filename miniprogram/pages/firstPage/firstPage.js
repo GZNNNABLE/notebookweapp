@@ -28,6 +28,7 @@ Page({
    */
   onShow: function () {
 
+
   },
 
   /**

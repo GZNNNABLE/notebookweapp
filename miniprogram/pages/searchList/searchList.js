@@ -20,6 +20,7 @@ Page({
     editMessage:"",
     details:{},
     noteList:[],
+    searchList:[],
     picList:[],
     detailTitle:'',
     detailMessage:'',
@@ -53,6 +54,36 @@ Page({
     },
     value1:0,
     currentTime:new Date().getTime(),
+  },
+  onSearch:function(){
+    const db = wx.cloud.database(); 
+    db.collection("counters").where({
+    _openid: this.data.openid,
+     type:this.data.type,
+     message:{
+     $regex:'.*'+ this.data.searchValue,
+     $options: 'i'
+   }
+ }).get({
+  success: res => {
+    this.setData({
+      noteList:[...res.data]
+    })
+console.log(res)
+  },
+  fail: err => {
+    wx.showToast({
+      icon: 'none',
+      title: '查询记录失败'
+    })
+    console.error('[数据库] [查询记录] 失败：', err)
+  }
+})
+  },
+  clearSearch:function(){
+    this.data.noteList.length=0
+    this.data.page=0
+    this.onQuery()
   },
   handleClick:function(event){
     if(this.data.type===0){

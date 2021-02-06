@@ -12,7 +12,9 @@ const $ = db.command.aggregate
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   
-   return (db.collection('schedule').aggregate().group({ 
+   return (db.collection('schedule').aggregate().match({
+     _openid:wxContext.OPENID
+   }).group({ 
     _id: '$tag',
     num: $.sum(1)  
   }).end())

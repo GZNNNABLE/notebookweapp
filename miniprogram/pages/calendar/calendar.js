@@ -101,7 +101,7 @@ Page({
      
     },
     gotoEdit(event){
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../calendar/editSchedule?id='+event.currentTarget.dataset.id,
       })
     },
@@ -180,6 +180,8 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
+      this.data.list.length=0
+      this.data.page=0
       this.onQuery()
       wx.stopPullDownRefresh()
   
