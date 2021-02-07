@@ -197,6 +197,7 @@ Page({
       this.setData({
       noteStas:res.result.list,
     })
+    if(this.data.noteStas.length!==0){
     this.data.noteStas.forEach(function(item){
       item.name = item._id; 
       delete item._id;
@@ -210,13 +211,14 @@ Page({
 
         }
         ]
-      });
+        });}
       wx.hideLoading({})
 
     })
     .catch(console.error)
   },
   onStatisticsSche: function() {  
+    
     wx.showLoading({
       title: '加载中',
       mask:'true'
@@ -229,9 +231,10 @@ Page({
       this.setData({
       scheStas:res.result.list,
      
-    })      
+    })
+    if(this.data.scheStas.length!==0){
+    //indicator和data需要的数据都是res.result.list，将data需要的利用一个新数组sche进行深拷贝再处理得到的数组
     this.setData({
-      
       sche:JSON.parse(JSON.stringify(this.data.scheStas))
     })
 
@@ -271,7 +274,7 @@ console.log(this.data.sche)
           name:'日程分布情况'}]
         }
         ]
-      });
+      });}
       wx.hideLoading({})
 
       

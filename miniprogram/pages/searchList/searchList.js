@@ -231,18 +231,18 @@ console.log(res)
     }
     else if(this.data.type===1){
 
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../editDetailLearn/editDetailLearn?id='+event.currentTarget.dataset.id+'&edit=1'
       })
       console.log(event.currentTarget.dataset.id)
     }
     else if(this.data.type===2){
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../editDetailShop/editDetailShop?id='+event.currentTarget.dataset.id+'&edit=1'
       })
     }
     else if(this.data.type===3){
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../editDetailFree/editDetailFree?id='+event.currentTarget.dataset.id+'&edit=1'
       })
     }
@@ -355,6 +355,8 @@ console.log(res)
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.data.noteList.length=0
+    this.data.page=0
     this.onQuery()
     wx.stopPullDownRefresh()
   },
