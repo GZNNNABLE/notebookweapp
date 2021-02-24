@@ -16,7 +16,6 @@ exports.main = async (event, context) => {
      _openid:wxContext.OPENID
    }).group({ 
     _id: '$statisticsName',
-    
     value: $.sum(1)  
   }).end())
   // .then(res =>console.log(res))

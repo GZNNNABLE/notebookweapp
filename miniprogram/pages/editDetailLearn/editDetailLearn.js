@@ -121,7 +121,6 @@ Page({
     }
   },
   detailQuery:function(){
-    
     const db = wx.cloud.database()
     db.collection('counters').where({
       _id:this.data.id
@@ -133,6 +132,7 @@ Page({
         var hour = new Date(res.data[0].noticeTime).getHours()
         var minute = new Date(res.data[0].noticeTime).getMinutes()
         var time = year+'-'+month+'-'+date+' '+hour+'时'+minute+'分'
+ 
         this.setData({
           
           checked:res.data[0].notice,

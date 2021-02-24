@@ -127,7 +127,6 @@ Page({
     var piclist1=[]
     wx.cloud.deleteFile({
       fileList: [this.data.picList[event.currentTarget.dataset.id]],
-      
       success: res => {
         // handle success
         console.log(res.fileList)

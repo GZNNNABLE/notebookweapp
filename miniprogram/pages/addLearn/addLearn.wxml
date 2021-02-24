@@ -29,7 +29,7 @@
 <van-cell size="large" title="选择提醒时间" wx:if="{{pickTime}}" is-link bind:click="showTimePicker" >{{timeFormatter}}</van-cell>
 <view class="buttonFather">
   <van-button  
-  bind:click="onAdd" 
+  bindtap="onAdd" 
   color="#8bcfff"
   custom-style="width:150px;height:50px;font-size:20px"
   type="info">提交</van-button>

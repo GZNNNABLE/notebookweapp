@@ -70,10 +70,7 @@ Page({
                  //获取文件路径
         this.setData({
           picList:this.data.picList.concat([res.fileID])
-          
-          
-        })
-        
+        })   
         console.log(this.data.picList)
       },
       fail: console.error
