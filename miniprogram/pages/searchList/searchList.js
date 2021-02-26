@@ -327,11 +327,20 @@ console.log(res)
   onReady: function () {
     
   },
-
+test(){
+  wx.cloud.callFunction({
+    // 云函数名称
+    name: 'sendontime',
+  })
+  
+ 
+},
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
+
    
 
    

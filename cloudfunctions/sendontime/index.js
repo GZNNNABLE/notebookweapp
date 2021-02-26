@@ -19,10 +19,10 @@ exports.main = async (event, context) => {
     var time1 = year+'-'+month+'-'+date+' '+hour+'时'
 
     const subMsg = await db
-      .collection('subMsg').where({
+      .collection('msgSub').where({
         timeFmt:time1}
       ).get();
-      console.log(subMsg)
+
 
 
     // 循环消息列表

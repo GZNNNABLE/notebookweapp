@@ -6,6 +6,7 @@ Page({
    */
   data: {
     timeFormatter:"",
+    testtime:"",
     timeFmt:"",
     title:"",
     message:"",
@@ -40,11 +41,11 @@ Page({
       const time =this.data.noticeTime
       const time1 =this.data.timeFmt
       const item={
-        "thing05": {
-        "value": this.data.title? this.data.title:"暂无"
+        "thing5": {
+        "value": this.data.title
     },
-         "thing02": {
-        "value": this.data.message? this.data.message:"暂无"
+         "thing2": {
+        "value": this.data.message
     },
          "thing11": {
         "value": this.data.timeFormatter
@@ -150,8 +151,12 @@ Page({
     var minute = new Date(val.detail).getMinutes()
     var time = year+'-'+month+'-'+date+' '+hour+'时'+minute+'分'
     var time1 = year+'-'+month+'-'+date+' '+hour+'时'
+
+    
+   
     this.setData({
-      noticeTime:val.detail
+      noticeTime:val.detail,
+      
     })
     
     this.setData({
@@ -159,7 +164,7 @@ Page({
       timeFormatter:time,
       timeFmt:time1
     })
-  
+
   },
   timePickerClose:function(){
     this.setData({

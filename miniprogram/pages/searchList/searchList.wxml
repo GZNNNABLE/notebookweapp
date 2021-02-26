@@ -139,5 +139,7 @@
   bind:close="delNoteCancel"
   message="确认删除吗" />
 </view></view>
+<van-button bindtap="test">啊啊啊
+</van-button>
 </view>
 
